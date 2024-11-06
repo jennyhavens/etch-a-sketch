@@ -1,0 +1,13 @@
+Container grid that can hold 16*16 grid of square divs:
+    1. Create a container in HTML
+    2. Create grid of 16*16 squares using flexbox in javascript
+
+Setup hover effect so grid changes colors (random for bonus) when mouse passes over:
+    1. Setup event listeners for "hover"
+    2. Randomize color change effect by adding a new class to the divs OR changing divs background color using Javascript and googling for randomize
+    3. Bonus: make squares get progressivley darker by 10%. Google how to use opacity in CSS
+
+Add button at the top of the screen that allows user to input a number of squares per side (max 100) in the same amount of space:
+    1. Add a button in HTML
+    2. Have button run prompt fuction when clicked
+    3. If 64 is entered create a 64*6 grid without changing the number of pixels used
