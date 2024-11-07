@@ -12,13 +12,13 @@ function createGrid(gridSize) {
         };
 
     const allSquares = document.querySelectorAll('.square');
-    allSquares.forEach((square) => {
+    allSquares.forEach(square => {
         let r = (Math.random() * 255);
         let g = (Math.random() * 255);
         let b = (Math.random() * 255);
         let randomRGB = `rgb(${r}, ${g}. ${b})`;
 
-        square.addEventListener('mouseover', () => {
+        square.addEventListener("mouseover", () => {
             if(square.style.backgroundColor === "") {
                 square.style.backgroundColor = randomRGB;
             } else {
@@ -38,7 +38,7 @@ function resetGrid() {
     };
 };
 
-const changeButton = document.querySelector("#change-grid");
+const changeButton = document.querySelector('#change-grid');
 changeButton.addEventListener('click', () => {
     const userInput = window.prompt("Choose new grid dimensions (enter 1-100):");
 

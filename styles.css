@@ -24,7 +24,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: orange;
     outline: 1px solid black;
     opacity: 0.1;
 }
