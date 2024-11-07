@@ -11,3 +11,35 @@ Add button at the top of the screen that allows user to input a number of square
     1. Add a button in HTML
     2. Have button run prompt fuction when clicked
     3. If 64 is entered create a 64*6 grid without changing the number of pixels used
+
+
+
+gridSquare.addEventListener('mouseover', () => {
+            gridSquare.style.backgroundColor = getRandomColor();
+        });
+        console.log();
+    };
+};
+
+        function getRandomColor() {
+            var R = Math.floor(Math.random() * 256);
+            var G = Math.floor(Math.random() * 256);
+            var B = Math.floor(Math.random() * 256);
+            var randomcolor = "rgb(" + R + "," + G + "," + B + ")";  
+            return(randomcolor);
+        }
+
+        const allSquares = document.querySelectorAll('.square');
+        allSquares.forEach(square => {
+            if(square.style.backgroundColor === "") {
+                square.style.backgroundColor = getRandomColor;
+            }
+        });
+
+        square.addEventListener("mouseover", () => {
+            if(square.style.backgroundColor === "") {
+                square.style.backgroundColor = randomRGB;
+            } else {
+            square.style.opacity -= "-0.1";
+            }
+        });
