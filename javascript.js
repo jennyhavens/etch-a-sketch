@@ -1,10 +1,10 @@
 const gridContainer = document.querySelector('.grid-container');
 const changeButton = document.querySelector('#change-grid');
 const randomColorButton = document.querySelector('#colors');
-const blackWhiteButton = document.querySelector('#black-white');
-const whiteBlackButton = document.querySelector('#white-black');
+const eraserButton = document.querySelector('#eraser');
 const opacityButton = document.querySelector('#opacity');
 const resetButton = document.querySelector('#reset-grid');
+const clrPicker = document.querySelector("#clr-picker");
 //const for buttons here
 
 let gridSize = 16;
@@ -17,32 +17,39 @@ function createGrid(gridSize) {
             gridSquare.style.height = `${40 / gridSize}vw`;
             gridContainer.appendChild(gridSquare);
 
-        gridSquare.addEventListener('mouseover', () => {
-            gridSquare.style.backgroundColor = getRandomColor();
-        });
+            
+            //gridSquare.addEventListener('mouseover', () => {
+                //gridSquare.style.backgroundColor = 'red';
+            //});
     };
+
+    colorGrid();
 };
 createGrid(gridSize);
 
-//function drawingOnGrid() {
-   // const squares = document.querySelectorAll('.square');
-    //squares.forEach((square) => {
-        //square.addEventListener("mouseover", () => {
-            //if(isLeftClick) {
-                //if(isRainbow) {
-                    //item.style.backgroundColor = "hsl(" + Math.floor(Math.random() * (355 -1) + 1) + ",65%,65%)";
-                //} else {
-                   //item.style.backgroundColor = selectedColor;
-                //}
-        //squares.addEventListener('mouseover', () => {
-            //squares.style.backgroundColor = getRandomColor();
-       // });
-//}
+//function blackWhite() { 
+    //return "rgb(0, 0, 0)"; 
+//};
 
-function resetGrid() {
-    while (gridContainer.firstChild) {
-        gridContainer.removeChild(gridContainer.lastChild);
-    };
+let selectedColor = clrPicker.value;
+let isRainbow = false;
+clrPicker.addEventListener("input", () =>{
+    selectedColor = clrPicker.value;
+    isRainbow = false;
+})
+
+function colorGrid() {
+    let gridSquare = document.querySelectorAll(".square");
+    gridSquare.forEach((square) => {
+        square.addEventListener('mouseover', () => {
+            if(isRainbow) {
+                square.style.backgroundColor = getRandomColor();
+            } else {
+                square.style.backgroundColor = selectedColor;
+            }
+                square.style.transition = ".5s";
+        });
+    });
 };
 
 changeButton.addEventListener('click', () => {
@@ -58,12 +65,26 @@ changeButton.addEventListener('click', () => {
     };  
 });
 
-//const allSquares = document.querySelectorAll('.square');
-//allSquares.forEach(square => {
-    //if(square.style.backgroundColor === "") {
-        //square.style.backgroundColor = getRandomColor;
-    //}
-//});
+resetButton.addEventListener('click', () => {
+    resetGrid();
+    createGrid(gridSize);
+});
+
+eraserButton.addEventListener("click", () =>{
+    selectedColor = "";
+    isRainbow = false;
+});
+
+//handle rainbow color
+randomColorButton.addEventListener("click", () =>{
+    isRainbow = true;
+});
+
+function resetGrid() {
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.lastChild);
+    };
+};
 
 function getRandomColor() {
     var R = Math.floor(Math.random() * 256);
@@ -71,12 +92,3 @@ function getRandomColor() {
     var B = Math.floor(Math.random() * 256);
     return `rgb(${R}, ${G}, ${B})`;
 };
-
-randomColorButton.addEventListener('click', () => {
-    getRandomColor();
-});
-
-resetButton.addEventListener('click', () => {
-    resetGrid();
-    createGrid(gridSize);
-});
