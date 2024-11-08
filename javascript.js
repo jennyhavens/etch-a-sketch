@@ -2,7 +2,6 @@ const gridContainer = document.querySelector('.grid-container');
 const changeButton = document.querySelector('#change-grid');
 const randomColorButton = document.querySelector('#colors');
 const eraserButton = document.querySelector('#eraser');
-const opacityButton = document.querySelector('#opacity');
 const resetButton = document.querySelector('#reset-grid');
 const clrPicker = document.querySelector("#clr-picker");
 //const for buttons here
@@ -16,23 +15,15 @@ function createGrid(gridSize) {
             gridSquare.style.width = `${40 / gridSize}vw`;
             gridSquare.style.height = `${40 / gridSize}vw`;
             gridContainer.appendChild(gridSquare);
-
-            
-            //gridSquare.addEventListener('mouseover', () => {
-                //gridSquare.style.backgroundColor = 'red';
-            //});
     };
 
     colorGrid();
 };
 createGrid(gridSize);
 
-//function blackWhite() { 
-    //return "rgb(0, 0, 0)"; 
-//};
-
 let selectedColor = clrPicker.value;
 let isRainbow = false;
+
 clrPicker.addEventListener("input", () =>{
     selectedColor = clrPicker.value;
     isRainbow = false;
@@ -42,7 +33,7 @@ function colorGrid() {
     let gridSquare = document.querySelectorAll(".square");
     gridSquare.forEach((square) => {
         square.addEventListener('mouseover', () => {
-            if(isRainbow) {
+            if (isRainbow) {
                 square.style.backgroundColor = getRandomColor();
             } else {
                 square.style.backgroundColor = selectedColor;
@@ -70,12 +61,11 @@ resetButton.addEventListener('click', () => {
     createGrid(gridSize);
 });
 
-eraserButton.addEventListener("click", () =>{
+eraserButton.addEventListener("click", () => {
     selectedColor = "";
     isRainbow = false;
 });
 
-//handle rainbow color
 randomColorButton.addEventListener("click", () =>{
     isRainbow = true;
 });
